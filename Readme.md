@@ -1,4 +1,4 @@
-# Spigot Plugin Template
+# ebean-wrapper
 
 [![Build Status](https://github.com/Silthus/ebean/workflows/Build/badge.svg)](../../actions?query=workflow%3ABuild)
 [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/Silthus/ebean?include_prereleases&label=release)](../../releases)
@@ -16,7 +16,7 @@ Include the `net.silthus:ebean` dependency in you project and shade it into your
 
 ```groovy
 dependencies {
-    implementation "net.silthus:ebean:1.0.0"
+    implementation group: "net.silthus", name: "ebean-wrapper", version: "1.0.0"
 }
 ```
 
@@ -28,7 +28,7 @@ dependencies {
   <dependencies>
     <dependency>
       <groupId>net.silthus</groupId>
-      <artifactId>ebean</artifactId>
+      <artifactId>ebean-wrapper</artifactId>
       <version>1.0.0</version>
     </dependency>
   </dependencies>
