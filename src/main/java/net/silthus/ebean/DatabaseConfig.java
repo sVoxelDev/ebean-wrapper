@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.Value;
 import lombok.experimental.Accessors;
 
+import java.io.File;
+
 @Value
 public class DatabaseConfig {
 
@@ -19,10 +21,11 @@ public class DatabaseConfig {
     String password;
     String url;
     DriverMapping driver;
+    File driverPath;
 
     public Builder toBuilder() {
 
-        return new Builder(getPlatform(), getUsername(), getPassword(), getUrl(), getDriver());
+        return new Builder(getPlatform(), getUsername(), getPassword(), getUrl(), getDriver(), getDriverPath());
     }
 
     @Setter
@@ -35,6 +38,7 @@ public class DatabaseConfig {
         private String password = "sa";
         private String url = "jdbc:h2:~/ebean";
         private DriverMapping driver = DriverMapping.DRIVERS.get(platform);
+        private File driverPath = new File("drivers");
 
         Builder() {
         }
@@ -54,7 +58,7 @@ public class DatabaseConfig {
 
         public DatabaseConfig build() {
 
-            return new DatabaseConfig(platform, username, password, url, driver);
+            return new DatabaseConfig(platform, username, password, url, driver, driverPath);
         }
 
         private void verifyPlatform(String platform) {
