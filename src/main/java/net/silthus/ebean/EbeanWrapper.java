@@ -25,6 +25,7 @@ public class EbeanWrapper implements AutoCloseable {
     private final ClassLoader classLoader;
     private final io.ebean.config.DatabaseConfig databaseConfig;
     private final DriverMapping driver;
+    private final File driverPath;
 
     private Database database;
 
@@ -56,6 +57,7 @@ public class EbeanWrapper implements AutoCloseable {
 
         this.classLoader = classLoader;
         this.driver = config.getDriver();
+        this.driverPath = config.getDriverPath();
 
         databaseConfig = new io.ebean.config.DatabaseConfig();
         // load configuration defaults from application.yml
@@ -76,11 +78,12 @@ public class EbeanWrapper implements AutoCloseable {
         this.databaseConfig = config;
         this.classLoader = classLoader;
         this.driver = driver;
+        this.driverPath = new File("drivers");
     }
 
     public File getDriverLocation() {
 
-        return new File("drivers", driver.getIdentifier() + ".jar");
+        return new File(driverPath, driver.getIdentifier() + ".jar");
     }
 
     public boolean driverExists() {
@@ -95,7 +98,7 @@ public class EbeanWrapper implements AutoCloseable {
         }
 
         File driverLocation = getDriverLocation();
-        driverLocation.mkdirs();
+        driverPath.mkdirs();
 
         try {
             FileUtils.copyURLToFile(new URL(driver.getDownloadUrl()), driverLocation);
