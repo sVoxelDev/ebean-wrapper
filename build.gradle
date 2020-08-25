@@ -7,9 +7,11 @@ buildscript {
 
 plugins {
     id 'com.github.johnrengelman.shadow' version '6.0.0'
-    id 'kr.entree.spigradle' version '2.1.2'
-    id 'java'
+    id 'java-library'
     id 'jacoco'
+    id 'io.ebean' version '12.3.8'
+    id 'idea'
+    id "io.freefair.lombok" version "5.1.1"
 }
 
 apply from: "$rootDir/gradle/jacoco.gradle"
@@ -18,19 +20,7 @@ apply from: "$rootDir/gradle/publish.gradle"
 sourceCompatibility = 8
 targetCompatibility = 8
 
-ext {
-    mcVersion = project.property("mcVersion")
-}
-
 group project.property("group")
-
-spigot {
-    name = project.property("pluginName")
-    authors = [project.property("author")]
-    apiVersion = project.property("apiVersion")
-    load = STARTUP
-    //    depends = ['']
-}
 
 compileJava {
     options.encoding = 'UTF-8'
@@ -39,52 +29,34 @@ compileJava {
     options.forkOptions.executable = 'javac'
 }
 
-archivesBaseName = project.property("pluginName")
-
 repositories {
+    mavenLocal()
     mavenCentral()
     jcenter()
 
-    spigot()
-//    bungeecord()
-//    paper()
-//    protocolLib()
-//    enginehub()
-
-    maven {
-        name = 'github'
-        url = 'https://maven.pkg.github.com/Silthus'
-        credentials {
-            username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
-            password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
-        }
-    }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    compileOnly lombok()
-    annotationProcessor lombok()
+    annotationProcessor "io.ebean:ebean-annotation:4.7"
+    annotationProcessor "io.ebean:ebean-querybean:12.3.7"
+    annotationProcessor "io.ebean:persistence-api:2.2.1"
+    annotationProcessor "io.ebean:querybean-generator:12.3.7"
 
-    compileOnly spigot(mcVersion)
+    compile group: 'commons-io', name: 'commons-io', version: '2.7'
 
-    //Add dependencies here
+    api "io.ebean:ebean-annotation:4.7"
+    api "io.ebean:ebean-querybean:12.3.7"
+    api "io.ebean:ebean:12.3.7"
 
-    //Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:3.+"
-    testImplementation mockBukkit()
     testImplementation 'org.assertj:assertj-core:3.+'
-    testImplementation lombok()
-    testAnnotationProcessor lombok()
+    testImplementation 'io.ebean:ebean-test:12.3.7'
 }
 
 shadowJar {
     classifier = ''
-//    dependencies {
-//        include(dependency('co.aikar:acf-paper:0.5.0-SNAPSHOT'))
-//    }
-//    relocate 'co.aikar.commands', "${packageName}.acf"
-//    relocate 'co.aikar.locales', "${packageName}.locales"
 }
 
 tasks.build.dependsOn(shadowJar)
