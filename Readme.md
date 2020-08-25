@@ -10,7 +10,7 @@ A simple wrapper around the [ebean.io](https://ebean.io) library to provide a on
 
 ## Usage
 
-Include the `net.silthus:ebean` dependency in you project and shade it into your application or provide it in the classpath.
+Include the dependency in your project and shade it into your application or provide it in the classpath.
 
 ### Gradle
 
