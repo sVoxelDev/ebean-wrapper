@@ -18,7 +18,7 @@ public class DriverMapping {
     public static final Map<String, DriverMapping> DRIVERS = new HashMap<>();
 
     static {
-        DRIVERS.put("h2", new DriverMapping("h2", "org.h2.Driver", "http://repo2.maven.org/maven2/com/h2database/h2/1.4.200/h2-1.4.200.jar"));
+        DRIVERS.put("h2", new DriverMapping("h2", "org.h2.Driver", "https://repo1.maven.org/maven2/com/h2database/h2/1.4.200/h2-1.4.200.jar"));
         DRIVERS.put("mysql", new DriverMapping("mysql", "com.mysql.jdbc.Driver", "https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar"));
         DRIVERS.put("postgres", new DriverMapping("postgres", "org.postgresql.Driver", "https://jdbc.postgresql.org/download/postgresql-42.2.16.jar"));
         DRIVERS.put("mariadb", new DriverMapping("mariadb", "org.mariadb.jdbc.Driver", "https://downloads.mariadb.com/Connectors/java/connector-java-2.6.2/mariadb-java-client-2.6.2.jar"));
