@@ -41,7 +41,7 @@ dependencies {
     annotationProcessor "io.ebean:ebean-annotation:4.7"
     annotationProcessor "io.ebean:ebean-querybean:12.3.7"
     annotationProcessor "io.ebean:persistence-api:2.2.1"
-    annotationProcessor "io.ebean:querybean-generator:12.3.7"
+    annotationProcessor "io.ebean:querybean-generator:12.3.8"
 
     compile group: 'commons-io', name: 'commons-io', version: '2.7'
 
