@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/Silthus/ebean-wrapper/compare/v1.1.0...v2.0.0) (2020-08-26)
+
+
+### Features
+
+* refactor EbeanWrapper to take a full ebean config ([ac87138](https://github.com/Silthus/ebean-wrapper/commit/ac871384639ca678a02814e0ebb683881ab7a148))
+
+
+### BREAKING CHANGES
+
+* the EbeanWrapper now takes a Config parameter containing all of the needed configuration for the wrapper. Including a full ebean database and/or datasource config.
+
 # [1.1.0](https://github.com/Silthus/ebean-wrapper/compare/v1.0.0...v1.1.0) (2020-08-25)
 
 
