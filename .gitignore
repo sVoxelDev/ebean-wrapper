@@ -9,6 +9,7 @@
 
 .gradle
 build/
+drivers/
 
 # Server
 working/*

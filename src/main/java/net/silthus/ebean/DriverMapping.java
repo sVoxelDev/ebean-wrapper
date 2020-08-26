@@ -9,7 +9,7 @@ import java.util.Map;
  * This class maps a driver to its driver class and provides a valid download url for the driver.
  * <p>
  * The driver will then be downloaded if needed and loaded dynamically at runtime.
- * Provide you custom driver inside the {@link DatabaseConfig.Builder#driver(DriverMapping)} method or
+ * Provide you custom driver inside the {@link Config.Builder} or
  * use one of the default drivers from the {@link #DRIVERS} map.
  */
 @Value

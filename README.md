@@ -15,6 +15,10 @@ Include the dependency in your project and shade it into your application or pro
 ### Gradle
 
 ```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
 dependencies {
     implementation group: "net.silthus", name: "ebean-wrapper", version: "1.0.0"
 }
@@ -24,6 +28,13 @@ dependencies {
 
  ```xml
 <project>
+  ...
+  <repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
   ...
   <dependencies>
     <dependency>
@@ -37,6 +48,8 @@ dependencies {
 ```
 
 ### The EbeanWrapper
+
+> TODO: update documentation to match latest version
 
 You can then create a new instance of the `EbeanWrapper` providing a simplified `net.silthus.DatabaseConfig` created with the `DatabaseConfig.Builder` or provide your own instance of the ebean `io.ebean.config.DatabaseConfig`.
 

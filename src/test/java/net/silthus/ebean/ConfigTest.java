@@ -1,5 +1,6 @@
 package net.silthus.ebean;
 
+import io.ebean.datasource.DataSourceConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
-class DatabaseConfigTest {
+class ConfigTest {
 
     @Nested
     class Builder {
@@ -18,16 +19,16 @@ class DatabaseConfigTest {
         void shouldThrowRuntimeExceptionIfDriverIsInvalid() {
 
             assertThatExceptionOfType(RuntimeException.class)
-                    .isThrownBy(() -> DatabaseConfig.builder().platform("foo").build())
-                    .withMessageContaining("Invalid platform");
+                    .isThrownBy(() -> Config.builder().driver("foo").build())
+                    .withMessageContaining("Unable to find a valid driver mapping for foo.");
         }
 
         @Test
         @DisplayName("should set the correct driver for platform mappings")
         void shouldSetTheCorrectDriver() {
 
-            assertThatCode(() -> assertThat(DatabaseConfig.builder().platform("mysql").build())
-                    .extracting(DatabaseConfig::getDriver)
+            assertThatCode(() -> assertThat(Config.builder().driver("mysql").build())
+                    .extracting(Config::getDriver)
                     .isEqualTo(DriverMapping.DRIVERS.get("mysql"))
             ).doesNotThrowAnyException();
         }
@@ -38,9 +39,9 @@ class DatabaseConfigTest {
 
             DriverMapping driver = new DriverMapping("foo", "bar", "none");
 
-            assertThatCode(() -> assertThat(DatabaseConfig.builder()
+            assertThatCode(() -> assertThat(Config.builder()
                     .driver(driver).build())
-                    .extracting(DatabaseConfig::getDriver, DatabaseConfig::getPlatform)
+                    .extracting(Config::getDriver, config -> config.getDatabaseConfig().getDataSourceConfig().getPlatform())
                     .contains(driver, "foo")
             ).doesNotThrowAnyException();
         }
