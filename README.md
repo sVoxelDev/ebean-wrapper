@@ -49,13 +49,12 @@ dependencies {
 
 ### The EbeanWrapper
 
-> TODO: update documentation to match latest version
-
-You can then create a new instance of the `EbeanWrapper` providing a simplified `net.silthus.DatabaseConfig` created with the `DatabaseConfig.Builder` or provide your own instance of the ebean `io.ebean.config.DatabaseConfig`.
+You can then create a new instance of the `EbeanWrapper` by providing a `Config` object. Use the config builder `Config.builder()` to create a new instance of the config.
+Make sure you provide a valid driver or create your own `DriverMapping`.
 
 ```java
-EbeanWrapper wrapper = new EbeanWrapper(DatabaseConfig.builder()
-    .platform("mysql")
+EbeanWrapper wrapper = new EbeanWrapper(Config.builder()
+    .driver("mysql")
     .username("root")
     .password("root")
     .url("jdbc:mysql://localhost:3306/foobar")
@@ -70,15 +69,29 @@ wrapper.downloadDriver();
 ```
 
 Then you can open the database connection or directly get the `Database` object, which will also open the connection.
+The connection will be cached and all subsequent calls to `getDatabase()` use the same connection.
 
 ```java
-wrapper.open();
-// or directly get the database
+wrapper.connect();
+// or directly get the database which will connect automatically
 wrapper.getDatabase();
 ```
 
-And when you are done, e.g. your application is shutting down or reloading, close the connection.
+## Drivers
+
+The ebean wrapper provides the following default driver mappings for auto downloading the appropriate driver.
+
+| Driver | Documentation | ConnectionString |
+| ---- | ----- | ----- |
+| `h2` | [h2database.com](http://www.h2database.com/) | `jdbc:h2:~/test` |
+| `mysql` | [mysql.com](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-jdbc-url-format.html) | `jdbc:mysql://host:port/database` |
+| `postgres` | [jdbc.postgresql.org](https://jdbc.postgresql.org/documentation/80/connect.html) | `jdbc:postgresql://host:port/database` |
+| `mariadb` | [mariadb.com](https://mariadb.com/kb/en/about-mariadb-connector-j/) | `jdbc:mysql://host:port/database` |
+| `sqlserver` | [docs.microsoft.com](https://docs.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15) | `jdbc:sqlserver://localhost:1433;databaseName=AdventureWorks;integratedSecurity=true;` |
+| `sqlite` | [github.com/xerial/sqlite-jdbc](https://github.com/xerial/sqlite-jdbc) | `jdbc:sqlite:/home/example/mydatabase.db` |
+
+You can enable to autodownloading of the driver in the configuration builder:
 
 ```java
-wrapper.close();
+Config.builder().autoDownloadDriver(true)/*...*/.build();
 ```
