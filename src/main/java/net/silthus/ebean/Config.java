@@ -8,6 +8,7 @@ import lombok.Value;
 import lombok.experimental.Accessors;
 
 import java.io.File;
+import java.util.Arrays;
 
 @Value
 public class Config {
@@ -20,6 +21,7 @@ public class Config {
     File driverPath;
     DatabaseConfig databaseConfig;
     boolean autoDownloadDriver;
+    Class<?>[] entities;
 
     public Builder toBuilder() {
         DataSourceConfig dataSourceConfig = databaseConfig.getDataSourceConfig();
@@ -30,7 +32,8 @@ public class Config {
                 dataSourceConfig.getPassword(),
                 dataSourceConfig.getUrl(),
                 dataSourceConfig,
-                autoDownloadDriver);
+                autoDownloadDriver,
+                entities);
     }
 
     @Setter
@@ -46,8 +49,14 @@ public class Config {
         private String url = "jdbc:h2:~/ebean";
         private DataSourceConfig dataSource;
         private boolean autoDownloadDriver = false;
+        private Class<?>[] entities = new Class[0];
 
         Builder() {
+        }
+
+        public Builder entities(Class<?>... entities) {
+            this.entities = entities;
+            return this;
         }
 
         public Builder driver(DriverMapping driver) {
@@ -76,8 +85,10 @@ public class Config {
             }
 
             databaseConfig.setDataSourceConfig(dataSource);
+            databaseConfig.setClasses(Arrays.asList(entities.clone()));
+            databaseConfig.setRunMigration(true);
 
-            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver);
+            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, entities);
         }
 
         private DatabaseConfig defaultDatabaseConfig() {

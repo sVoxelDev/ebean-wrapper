@@ -2,7 +2,9 @@ package net.silthus.ebean;
 
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
+import io.ebean.annotation.Platform;
 import io.ebean.config.ClassLoadConfig;
+import io.ebean.dbmigration.DbMigration;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
