@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: "net.silthus", name: "ebean-wrapper", version: "1.0.0"
+    implementation group: "net.silthus", name: "ebean-wrapper", version: "2.0.0"
 }
 ```
 
