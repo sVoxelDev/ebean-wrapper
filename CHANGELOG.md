@@ -1,3 +1,15 @@
+# [2.1.0](https://github.com/Silthus/ebean-wrapper/compare/v2.0.0...v2.1.0) (2020-08-27)
+
+
+### Bug Fixes
+
+* bypass DriverManager unwilling to load driver from external jar ([bec95ea](https://github.com/Silthus/ebean-wrapper/commit/bec95ead36f9f9d8585634bf3778ed1559ec2c77))
+
+
+### Features
+
+* add option to pass a list of entity classes ([bcb3217](https://github.com/Silthus/ebean-wrapper/commit/bcb3217866d5cbb02f0ae7b6b294fcb2513289ca))
+
 # [2.0.0](https://github.com/Silthus/ebean-wrapper/compare/v1.1.0...v2.0.0) (2020-08-26)
 
 
