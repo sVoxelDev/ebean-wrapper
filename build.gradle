@@ -47,7 +47,7 @@ dependencies {
 
     api "io.ebean:ebean-annotation:4.7"
     api "io.ebean:ebean-querybean:12.3.8"
-    api "io.ebean:ebean:12.3.7"
+    api "io.ebean:ebean:12.3.8"
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:3.+"
