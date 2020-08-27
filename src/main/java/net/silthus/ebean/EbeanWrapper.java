@@ -2,6 +2,7 @@ package net.silthus.ebean;
 
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
+import io.ebean.config.ClassLoadConfig;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -95,10 +96,12 @@ public class EbeanWrapper implements AutoCloseable {
         }
 
         try {
-            ClassLoader classLoader = new URLClassLoader(new URL[]{driverLocation.toURI().toURL()}, config.getClassLoader());
+            ClassLoader classLoader = new URLClassLoader(new URL[]{driverLocation.toURI().toURL()}, getClass().getClassLoader());
+            Driver d = (Driver) Class.forName(driver.getDriverClass(), true, classLoader).getDeclaredConstructor().newInstance();
+            DriverManager.registerDriver(new DriverShim(d));
+            config.getDatabaseConfig().getDataSourceConfig().setDriver(DriverShim.DRIVER_NAME);
             Thread.currentThread().setContextClassLoader(classLoader);
-            Class.forName(driver.getDriverClass(), true, classLoader);
-        } catch (MalformedURLException | ClassNotFoundException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Unable to find " + driver.getIdentifier() + " driver class " + driver.getDriverClass() + " inside " + driverLocation.getAbsolutePath(), e);
         }
 

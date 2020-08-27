@@ -16,7 +16,6 @@ public class Config {
         return new Builder();
     }
 
-    ClassLoader classLoader;
     DriverMapping driver;
     File driverPath;
     DatabaseConfig databaseConfig;
@@ -24,8 +23,7 @@ public class Config {
 
     public Builder toBuilder() {
         DataSourceConfig dataSourceConfig = databaseConfig.getDataSourceConfig();
-        return new Builder(classLoader,
-                driver,
+        return new Builder(driver,
                 driverPath,
                 databaseConfig,
                 dataSourceConfig.getUsername(),
@@ -40,7 +38,6 @@ public class Config {
     @Accessors(fluent = true)
     public static class Builder {
 
-        private ClassLoader classLoader = getClass().getClassLoader();
         private DriverMapping driver = DriverMapping.DRIVERS.get("h2");
         private File driverPath = new File("drivers");
         private DatabaseConfig databaseConfig = defaultDatabaseConfig();
@@ -74,12 +71,13 @@ public class Config {
                         .setPlatform(driver.getIdentifier())
                         .setUsername(username)
                         .setPassword(password)
-                        .setUrl(url);
+                        .setUrl(url)
+                        .setDriver(driver.getDriverClass());
             }
 
             databaseConfig.setDataSourceConfig(dataSource);
 
-            return new Config(classLoader, driver, driverPath, databaseConfig, autoDownloadDriver);
+            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver);
         }
 
         private DatabaseConfig defaultDatabaseConfig() {
