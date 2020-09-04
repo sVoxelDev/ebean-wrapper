@@ -21,6 +21,8 @@ public class Config {
     File driverPath;
     DatabaseConfig databaseConfig;
     boolean autoDownloadDriver;
+    boolean runMigrations;
+    boolean createAll;
     Class<?>[] entities;
 
     public Builder toBuilder() {
@@ -33,6 +35,8 @@ public class Config {
                 dataSourceConfig.getUrl(),
                 dataSourceConfig,
                 autoDownloadDriver,
+                runMigrations,
+                createAll,
                 entities);
     }
 
@@ -49,6 +53,8 @@ public class Config {
         private String url = "jdbc:h2:~/ebean";
         private DataSourceConfig dataSource;
         private boolean autoDownloadDriver = false;
+        private boolean runMigrations = false;
+        private boolean createAll = false;
         private Class<?>[] entities = new Class[0];
 
         Builder() {
@@ -88,7 +94,7 @@ public class Config {
             databaseConfig.setClasses(Arrays.asList(entities.clone()));
             databaseConfig.setRunMigration(true);
 
-            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, entities);
+            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, runMigrations, createAll, entities);
         }
 
         private DatabaseConfig defaultDatabaseConfig() {

@@ -38,9 +38,6 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor "io.ebean:ebean-annotation:6.13"
-    annotationProcessor "io.ebean:ebean-querybean:12.3.8"
-    annotationProcessor "io.ebean:persistence-api:2.2.4"
     annotationProcessor "io.ebean:querybean-generator:12.3.8"
 
     compile group: 'commons-io', name: 'commons-io', version: '2.7'
@@ -48,6 +45,8 @@ dependencies {
     api "io.ebean:ebean-annotation:4.7"
     api "io.ebean:ebean-querybean:12.3.8"
     api "io.ebean:ebean:12.3.8"
+
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:3.+"

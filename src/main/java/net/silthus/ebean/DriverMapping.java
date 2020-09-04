@@ -22,7 +22,6 @@ public class DriverMapping {
         DRIVERS.put("mysql", new DriverMapping("mysql", "com.mysql.jdbc.Driver", "https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar"));
         DRIVERS.put("postgres", new DriverMapping("postgres", "org.postgresql.Driver", "https://jdbc.postgresql.org/download/postgresql-42.2.16.jar"));
         DRIVERS.put("mariadb", new DriverMapping("mariadb", "org.mariadb.jdbc.Driver", "https://downloads.mariadb.com/Connectors/java/connector-java-2.6.2/mariadb-java-client-2.6.2.jar"));
-        DRIVERS.put("sqlserver", new DriverMapping("sqlserver", "com.microsoft.sqlserver.jdbc.SQLServerDriver", "https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/8.4.0.jre8/mssql-jdbc-8.4.0.jre8.jar"));
         DRIVERS.put("sqlite", new DriverMapping("sqlite", "org.sqlite.JDBC", "https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.32.3.2/sqlite-jdbc-3.32.3.2.jar"));
     }
 
