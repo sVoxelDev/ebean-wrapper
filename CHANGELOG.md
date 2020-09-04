@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/Silthus/ebean-wrapper/compare/v2.1.0...v2.2.0) (2020-09-04)
+
+
+### Features
+
+* shade the h2 library ([3db24ff](https://github.com/Silthus/ebean-wrapper/commit/3db24ffc75c9b1b01c89e310536c7d0036a310fd))
+
 # [2.1.0](https://github.com/Silthus/ebean-wrapper/compare/v2.0.0...v2.1.0) (2020-08-27)
 
 
