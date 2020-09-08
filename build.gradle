@@ -38,7 +38,7 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor "io.ebean:querybean-generator:12.3.8"
+    annotationProcessor "io.ebean:querybean-generator:12.3.9"
 
     compile group: 'commons-io', name: 'commons-io', version: '2.7'
 
