@@ -9,7 +9,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '6.1.0'
     id 'java-library'
     id 'jacoco'
-    id 'io.ebean' version '12.4.1'
+    id 'io.ebean' version '12.4.3'
     id 'idea'
     id "io.freefair.lombok" version "5.2.1"
 }
