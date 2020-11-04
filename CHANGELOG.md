@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/Silthus/ebean-wrapper/compare/v2.2.0...v2.3.0) (2020-11-04)
+
+
+### Features
+
+* expose ebean-wrapper as a spigot plugin ([b916329](https://github.com/Silthus/ebean-wrapper/commit/b9163290739497a8c2ccd49f6734801c329186b8))
+
 # [2.2.0](https://github.com/Silthus/ebean-wrapper/compare/v2.1.0...v2.2.0) (2020-09-04)
 
 
