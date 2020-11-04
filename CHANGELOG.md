@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/Silthus/ebean-wrapper/compare/v2.3.1...v2.3.2) (2020-11-04)
+
+
+### Bug Fixes
+
+* **migration:** append driver identifier to migration path ([6bd214c](https://github.com/Silthus/ebean-wrapper/commit/6bd214c6d3ff9f312cc94c60f52042228919671e))
+
 ## [2.3.1](https://github.com/Silthus/ebean-wrapper/compare/v2.3.0...v2.3.1) (2020-11-04)
 
 
