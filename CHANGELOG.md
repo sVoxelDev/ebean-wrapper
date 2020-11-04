@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/Silthus/ebean-wrapper/compare/v2.3.0...v2.3.1) (2020-11-04)
+
+
+### Bug Fixes
+
+* copy dbmigration from using class to temp dir and execute from there ([65711a3](https://github.com/Silthus/ebean-wrapper/commit/65711a3c6ea63342d40087098484181635cee08d))
+
 # [2.3.0](https://github.com/Silthus/ebean-wrapper/compare/v2.2.0...v2.3.0) (2020-11-04)
 
 
