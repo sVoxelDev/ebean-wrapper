@@ -58,15 +58,15 @@ dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
 
     api "io.ebean:ebean-annotation:6.13"
-    api "io.ebean:ebean-querybean:12.5.0"
-    api "io.ebean:ebean:12.3.8"
+    api "io.ebean:ebean-querybean:12.5.1"
+    api "io.ebean:ebean:12.5.1"
 
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:3.+"
     testImplementation 'org.assertj:assertj-core:3.+'
-    testImplementation 'io.ebean:ebean-test:12.4.2'
+    testImplementation 'io.ebean:ebean-test:12.5.1'
 }
 
 shadowJar {
