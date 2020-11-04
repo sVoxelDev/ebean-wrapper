@@ -2,6 +2,7 @@ package net.silthus.ebean;
 
 import com.google.common.base.Strings;
 import com.google.common.io.Files;
+import io.ebean.annotation.Platform;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
 import lombok.AllArgsConstructor;
@@ -108,9 +109,10 @@ public class Config {
                 try {
                     File tempDir = Files.createTempDir();
                     File migrationDir = new File(tempDir, migrationPath);
-                    databaseConfig.setRunMigration(true);
                     JarUtil.copyFolderFromJar(migrationClass, migrationPath, tempDir, JarUtil.CopyOption.REPLACE_IF_EXIST);
-                    databaseConfig.getMigrationConfig().setMigrationPath("filesystem:" + migrationDir.getAbsolutePath());
+
+                    databaseConfig.setRunMigration(true);
+                    databaseConfig.getMigrationConfig().setMigrationPath("filesystem:" + new File(migrationDir, driver.getIdentifier()).getAbsolutePath());
                 } catch (IOException e) {
                     e.printStackTrace();
                     databaseConfig.setRunMigration(false);
