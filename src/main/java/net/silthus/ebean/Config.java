@@ -54,7 +54,7 @@ public class Config {
         private DataSourceConfig dataSource;
         private boolean autoDownloadDriver = false;
         private boolean runMigrations = false;
-        private boolean createAll = false;
+        private boolean createAll = true;
         private Class<?>[] entities = new Class[0];
 
         Builder() {
@@ -92,7 +92,13 @@ public class Config {
 
             databaseConfig.setDataSourceConfig(dataSource);
             databaseConfig.setClasses(Arrays.asList(entities.clone()));
-            databaseConfig.setRunMigration(true);
+
+            if (runMigrations) {
+                databaseConfig.setRunMigration(true);
+            } else if (createAll) {
+                databaseConfig.setDdlGenerate(true);
+                databaseConfig.setDdlRun(true);
+            }
 
             return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, runMigrations, createAll, entities);
         }
@@ -101,8 +107,6 @@ public class Config {
 
             DatabaseConfig databaseConfig = new DatabaseConfig();
 
-            // load configuration defaults from application.yml
-            databaseConfig.loadFromProperties();
             databaseConfig.setDefaultServer(true);
             databaseConfig.setRegister(true);
 

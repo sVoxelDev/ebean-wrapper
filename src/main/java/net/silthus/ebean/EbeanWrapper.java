@@ -35,7 +35,7 @@ public class EbeanWrapper implements AutoCloseable {
     private Database database;
 
     public EbeanWrapper() {
-        this.config = Config.builder().build();
+        this(Config.builder().build());
     }
 
     /**
@@ -107,13 +107,6 @@ public class EbeanWrapper implements AutoCloseable {
             Thread.currentThread().setContextClassLoader(classLoader);
         } catch (Exception e) {
             throw new RuntimeException("Unable to find " + driver.getIdentifier() + " driver class " + driver.getDriverClass() + " inside " + driverLocation.getAbsolutePath(), e);
-        }
-
-        if (config.isRunMigrations()) {
-            config.getDatabaseConfig().setRunMigration(true);
-        } else if (config.isCreateAll()) {
-            config.getDatabaseConfig().setDdlGenerate(true);
-            config.getDatabaseConfig().setDdlRun(true);
         }
 
         database = DatabaseFactory.create(config.getDatabaseConfig());

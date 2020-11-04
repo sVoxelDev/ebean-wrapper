@@ -7,6 +7,7 @@ buildscript {
 
 plugins {
     id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'kr.entree.spigradle' version '2.2.3'
     id 'java-library'
     id 'jacoco'
     id 'io.ebean' version '12.5.1'
@@ -20,7 +21,19 @@ apply from: "$rootDir/gradle/publish.gradle"
 sourceCompatibility = 8
 targetCompatibility = 8
 
+ext {
+    mcVersion = project.property("mcVersion")
+}
+
 group project.property("group")
+
+spigot {
+    name = project.property("pluginName")
+    authors = [project.property("author")]
+    apiVersion = project.property("apiVersion")
+    load = STARTUP
+    //    depends = ['']
+}
 
 compileJava {
     options.encoding = 'UTF-8'
@@ -40,13 +53,15 @@ repositories {
 dependencies {
     annotationProcessor "io.ebean:querybean-generator:12.5.1"
 
+    compileOnly spigot(mcVersion)
+
     compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
 
     api "io.ebean:ebean-annotation:6.13"
     api "io.ebean:ebean-querybean:12.5.0"
     api "io.ebean:ebean:12.3.8"
 
-    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:3.+"
