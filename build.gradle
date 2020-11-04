@@ -61,6 +61,8 @@ dependencies {
     api "io.ebean:ebean-querybean:12.5.1"
     api "io.ebean:ebean:12.5.1"
 
+    implementation "io.ebean:ebean-migration:12.1.4"
+
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'

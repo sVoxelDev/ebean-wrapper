@@ -1,13 +1,17 @@
 package net.silthus.ebean;
 
+import com.google.common.base.Strings;
+import com.google.common.io.Files;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.Value;
 import lombok.experimental.Accessors;
+import lombok.extern.java.Log;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 @Value
@@ -24,6 +28,8 @@ public class Config {
     boolean runMigrations;
     boolean createAll;
     Class<?>[] entities;
+    Class<?> migrationClass;
+    String migrationPath;
 
     public Builder toBuilder() {
         DataSourceConfig dataSourceConfig = databaseConfig.getDataSourceConfig();
@@ -37,12 +43,15 @@ public class Config {
                 autoDownloadDriver,
                 runMigrations,
                 createAll,
-                entities);
+                entities,
+                migrationClass,
+                migrationPath);
     }
 
     @Setter
     @AllArgsConstructor
     @Accessors(fluent = true)
+    @Log
     public static class Builder {
 
         private DriverMapping driver = DriverMapping.DRIVERS.get("h2");
@@ -56,6 +65,8 @@ public class Config {
         private boolean runMigrations = false;
         private boolean createAll = true;
         private Class<?>[] entities = new Class[0];
+        private Class<?> migrationClass = getClass();
+        private String migrationPath = "dbmigration";
 
         Builder() {
         }
@@ -94,19 +105,30 @@ public class Config {
             databaseConfig.setClasses(Arrays.asList(entities.clone()));
 
             if (runMigrations) {
-                databaseConfig.setRunMigration(true);
+                try {
+                    File tempDir = Files.createTempDir();
+                    File migrationDir = new File(tempDir, migrationPath);
+                    databaseConfig.setRunMigration(true);
+                    JarUtil.copyFolderFromJar(migrationClass, migrationPath, tempDir, JarUtil.CopyOption.REPLACE_IF_EXIST);
+                    databaseConfig.getMigrationConfig().setMigrationPath("filesystem:" + migrationDir.getAbsolutePath());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    databaseConfig.setRunMigration(false);
+                }
             } else if (createAll) {
+                databaseConfig.setRunMigration(false);
                 databaseConfig.setDdlGenerate(true);
                 databaseConfig.setDdlRun(true);
             }
 
-            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, runMigrations, createAll, entities);
+            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, runMigrations, createAll, entities, migrationClass, migrationPath);
         }
 
         private DatabaseConfig defaultDatabaseConfig() {
 
             DatabaseConfig databaseConfig = new DatabaseConfig();
 
+            databaseConfig.loadFromProperties();
             databaseConfig.setDefaultServer(true);
             databaseConfig.setRegister(true);
 

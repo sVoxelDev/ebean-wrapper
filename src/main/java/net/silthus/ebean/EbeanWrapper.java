@@ -7,6 +7,7 @@ import io.ebean.config.ClassLoadConfig;
 import io.ebean.config.DbMigrationConfig;
 import io.ebean.dbmigration.DbMigration;
 import io.ebean.migration.MigrationConfig;
+import io.ebean.migration.MigrationRunner;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
