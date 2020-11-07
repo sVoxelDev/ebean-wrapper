@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/Silthus/ebean-wrapper/compare/v2.4.0...v2.5.0) (2020-11-07)
+
+
+### Features
+
+* add convenience Driver class with mappings ([41e5a23](https://github.com/Silthus/ebean-wrapper/commit/41e5a23847385d5737aa221bb38ae42cec8727c6))
+
 # [2.4.0](https://github.com/Silthus/ebean-wrapper/compare/v2.3.2...v2.4.0) (2020-11-07)
 
 
