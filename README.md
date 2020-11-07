@@ -10,7 +10,10 @@ A simple wrapper around the [ebean.io](https://ebean.io) library to provide a on
 
 ## Usage
 
-Include the dependency in your project and shade it into your application or provide it in the classpath.
+Drop the `ebean-wrapper.jar` inside your plugins directory and depend on it, if you are using this wrapper in a Minecraft (Spigot/Paper) server.
+
+As an alternative you can shade the lib into your application or provide it in the classpath.
+**This is not recommended for Minecraft plugins!**
 
 ### Gradle
 
@@ -54,19 +57,28 @@ Make sure you provide a valid driver or create your own `DriverMapping`.
 
 ```java
 EbeanWrapper wrapper = new EbeanWrapper(Config.builder()
-    .driver("mysql")
+    .driver(Driver.MariaDB)
     .username("root")
     .password("root")
     .url("jdbc:mysql://localhost:3306/foobar")
 .build());
 ```
 
-You can then optionally initiate a download of the driver you are using. This will try to download the jar file and load it into the classpath.
-You should run this on an async thread and open the database connection after the download is complete.
+You will also need to add all classes that should be treated as entities to the entities method of the config builder.
 
 ```java
-wrapper.downloadDriver();
+Config.builder()
+    .entities(
+        User.class,
+        Address.class
+    ).driver(Driver.H2)
+    ...
+    .build();
 ```
+
+The ebean-wrapper will download the required driver by default. You can disable this behaviour my passing `.autoDownloadDriver(false)` to the `ConfigBuilder`.
+
+If you do that you can control on your own when to download the driver by calling `wrapper.downloadDriver();`.
 
 Then you can open the database connection or directly get the `Database` object, which will also open the connection.
 The connection will be cached and all subsequent calls to `getDatabase()` use the same connection.
@@ -90,8 +102,50 @@ The ebean wrapper provides the following default driver mappings for auto downlo
 | `sqlserver` | [docs.microsoft.com](https://docs.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15) | `jdbc:sqlserver://localhost:1433;databaseName=AdventureWorks;integratedSecurity=true;` |
 | `sqlite` | [github.com/xerial/sqlite-jdbc](https://github.com/xerial/sqlite-jdbc) | `jdbc:sqlite:/home/example/mydatabase.db` |
 
-You can enable to autodownloading of the driver in the configuration builder:
+## Migrations
+
+[ebean](http://ebean.io) has great migration support for all of the different database types.
+You can use this awesome feature by creating the following `Migrations` class inside your test source root.
 
 ```java
-Config.builder().autoDownloadDriver(true)/*...*/.build();
+import io.ebean.annotation.Platform;
+import io.ebean.dbmigration.DbMigration;
+
+import java.io.IOException;
+
+public class Migrations {
+
+    public static void main(String[] args) throws IOException {
+
+        DbMigration migration = DbMigration.create();
+
+        // location of the migration changeSet and where ddl is generated to
+        migration.setPathToResources("src/main/resources");
+
+        // add a series of database platforms to generate the ddl for ...
+        migration.addPlatform(Platform.POSTGRES, "postgres");
+        migration.addPlatform(Platform.MYSQL, "mysql");
+        migration.addPlatform(Platform.MARIADB, "mariadb");
+        migration.addPlatform(Platform.H2, "h2");
+        migration.addPlatform(Platform.SQLITE, "sqlite");
+
+        migration.generateMigration();
+    }
+}
 ```
+
+For this to work you will also need to test depend on all of the different driver implementations.
+Add the following test dependencies for it to work.
+
+```groovy
+    testImplementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+    testImplementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
+    testImplementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
+    testImplementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.32.3.2'
+    testImplementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+```
+
+Also make sure you enable migrations when creating your `EbeanWrapper` by setting the `runMigrations(true)` config option.
+
+Then ebean will automatically run the migrations of all of your entities on start.
