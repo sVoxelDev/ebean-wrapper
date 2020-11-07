@@ -56,13 +56,13 @@ public class Config {
     public static class Builder {
 
         private DriverMapping driver = DriverMapping.DRIVERS.get("h2");
-        private File driverPath = new File("drivers");
+        private File driverPath = new File("lib");
         private DatabaseConfig databaseConfig = defaultDatabaseConfig();
         private String username = "sa";
         private String password = "sa";
         private String url = "jdbc:h2:~/ebean";
         private DataSourceConfig dataSource;
-        private boolean autoDownloadDriver = false;
+        private boolean autoDownloadDriver = true;
         private boolean runMigrations = false;
         private boolean createAll = true;
         private Class<?>[] entities = new Class[0];
@@ -89,6 +89,11 @@ public class Config {
             }
             this.driver = DriverMapping.DRIVERS.get(driver);
             return this;
+        }
+
+        public Builder migrations(Class<?> rootClass) {
+            return migrationClass(rootClass)
+                    .runMigrations(true);
         }
 
         public Config build() {
