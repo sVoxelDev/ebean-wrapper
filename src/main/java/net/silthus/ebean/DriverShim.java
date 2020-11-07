@@ -3,17 +3,18 @@ package net.silthus.ebean;
 import lombok.extern.java.Log;
 
 import java.sql.*;
+import java.sql.Driver;
 import java.util.Properties;
 import java.util.logging.Logger;
 
 // workaround the DriverManagers security refusing to dynamically load drivers from JAR files
 // http://www.kfu.com/~nsayer/Java/dyn-jdbc.html
 @Log(topic = "ebean-wrapper")
-class DriverShim implements Driver {
+class DriverShim implements java.sql.Driver {
 
     public static final String DRIVER_NAME = "net.silthus.ebean.DriverShim";
 
-    private final Driver driver;
+    private final java.sql.Driver driver;
 
     DriverShim(Driver driver) {
         this.driver = driver;
