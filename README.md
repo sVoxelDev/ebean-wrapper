@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: "net.silthus", name: "ebean-wrapper", version: "2.3.2"
+    implementation group: "net.silthus", name: "ebean-wrapper", version: "2.4.0"
 }
 ```
 
@@ -40,7 +40,7 @@ dependencies {
     <dependency>
       <groupId>net.silthus</groupId>
       <artifactId>ebean-wrapper</artifactId>
-      <version>2.3.2</version>
+      <version>2.4.0</version>
     </dependency>
   </dependencies>
   ...

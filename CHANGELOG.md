@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/Silthus/ebean-wrapper/compare/v2.3.2...v2.4.0) (2020-11-07)
+
+
+### Features
+
+* simplify defaults for spigot ([4c35373](https://github.com/Silthus/ebean-wrapper/commit/4c353736f79fdaf1b4fb0562088f374d32894465))
+
 ## [2.3.2](https://github.com/Silthus/ebean-wrapper/compare/v2.3.1...v2.3.2) (2020-11-04)
 
 
