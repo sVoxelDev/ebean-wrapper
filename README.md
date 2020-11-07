@@ -146,6 +146,6 @@ Add the following test dependencies for it to work.
     testImplementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
 ```
 
-Also make sure you enable migrations when creating your `EbeanWrapper` by setting the `runMigrations(true)` config option.
+Also make sure you enable migrations when creating your `EbeanWrapper` by setting `migrations(this.getClass())` to the class of your application.
 
 Then ebean will automatically run the migrations of all of your entities on start.
