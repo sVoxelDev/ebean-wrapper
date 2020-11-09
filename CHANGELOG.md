@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/Silthus/ebean-wrapper/compare/v2.5.0...v2.6.0) (2020-11-09)
+
+
+### Features
+
+* add base entity convenience class ([2bd2ed7](https://github.com/Silthus/ebean-wrapper/commit/2bd2ed7819624dcf41dab100c2581aa1efc696dd))
+
 # [2.5.0](https://github.com/Silthus/ebean-wrapper/compare/v2.4.0...v2.5.0) (2020-11-07)
 
 

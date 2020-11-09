@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: "net.silthus", name: "ebean-wrapper", version: "2.5.0"
+    implementation group: "net.silthus", name: "ebean-wrapper", version: "2.6.0"
 }
 ```
 
@@ -43,7 +43,7 @@ dependencies {
     <dependency>
       <groupId>net.silthus</groupId>
       <artifactId>ebean-wrapper</artifactId>
-      <version>2.5.0</version>
+      <version>2.6.0</version>
     </dependency>
   </dependencies>
   ...
@@ -138,10 +138,10 @@ For this to work you will also need to test depend on all of the different drive
 Add the following test dependencies for it to work.
 
 ```groovy
-    testImplementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.5.0'
-    testImplementation group: 'com.h2database', name: 'h2', version: '2.5.000'
-    testImplementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.5.0'
-    testImplementation group: 'mysql', name: 'mysql-connector-java', version: '2.5.02'
+    testImplementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.6.0'
+    testImplementation group: 'com.h2database', name: 'h2', version: '2.6.000'
+    testImplementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.6.0'
+    testImplementation group: 'mysql', name: 'mysql-connector-java', version: '2.6.02'
     testImplementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.32.3.2'
     testImplementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
 ```
