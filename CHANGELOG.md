@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/Silthus/ebean-wrapper/compare/v2.6.0...v2.6.1) (2020-11-14)
+
+
+### Bug Fixes
+
+* **migrations:** do not copy migrations if running in test scope ([a476977](https://github.com/Silthus/ebean-wrapper/commit/a476977dcbe8be4878c60718bb237255c01fdb5f))
+
 # [2.6.0](https://github.com/Silthus/ebean-wrapper/compare/v2.5.0...v2.6.0) (2020-11-09)
 
 
