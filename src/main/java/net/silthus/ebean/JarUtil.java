@@ -35,6 +35,11 @@ public class JarUtil {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+        // do not try to copy files from non jar files
+        if (fullPath == null || !fullPath.exists() || fullPath.isDirectory()) {
+            return;
+        }
+
         ZipInputStream zis = new ZipInputStream(new FileInputStream(fullPath));
 
         ZipEntry entry;
