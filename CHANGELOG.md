@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/Silthus/ebean-wrapper/compare/v2.6.1...v2.7.0) (2020-11-17)
+
+
+### Features
+
+* **bukkit:** add bukkit config builder with simple defaults ([f774d22](https://github.com/Silthus/ebean-wrapper/commit/f774d2233ff6a676f5df3b0b3a47fb9417b9637e))
+
 ## [2.6.1](https://github.com/Silthus/ebean-wrapper/compare/v2.6.0...v2.6.1) (2020-11-14)
 
 
