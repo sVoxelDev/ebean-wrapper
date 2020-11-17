@@ -10,6 +10,8 @@ import lombok.Setter;
 import lombok.Value;
 import lombok.experimental.Accessors;
 import lombok.extern.java.Log;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +22,18 @@ public class Config {
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    public static Builder builder(JavaPlugin plugin) {
+        FileConfiguration config = plugin.getConfig();
+        return builder()
+                .driverPath(new File("lib"))
+                .autoDownloadDriver(true)
+                .migrations(plugin.getClass())
+                .url(config.getString("database.url", "jdbc:h2:file:" + new File(plugin.getDataFolder(), plugin.getName() + ".db").getAbsolutePath()))
+                .username(config.getString("database.username", "sa"))
+                .password(config.getString("database.password", "sa"))
+                .driver(config.getString("database.driver", "h2"));
     }
 
     DriverMapping driver;
