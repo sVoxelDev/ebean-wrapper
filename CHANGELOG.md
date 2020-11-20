@@ -1,3 +1,10 @@
+## [2.8.2](https://github.com/Silthus/ebean-wrapper/compare/v2.8.1...v2.8.2) (2020-11-20)
+
+
+### Bug Fixes
+
+* **db:** store all entities in a global variable ([b907564](https://github.com/Silthus/ebean-wrapper/commit/b9075649f221f7a6b56b8e8f6e061cdffce0fbc3))
+
 ## [2.8.1](https://github.com/Silthus/ebean-wrapper/compare/v2.8.0...v2.8.1) (2020-11-20)
 
 
