@@ -1,8 +1,6 @@
 package net.silthus.ebean;
 
-import com.google.common.base.Strings;
 import com.google.common.io.Files;
-import io.ebean.annotation.Platform;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
 import lombok.AllArgsConstructor;
@@ -30,6 +28,7 @@ public class Config {
                 .driverPath(new File("lib"))
                 .autoDownloadDriver(true)
                 .migrations(plugin.getClass())
+                .migrationTable("db_migrations_" + plugin.getName())
                 .url(config.getString("database.url", "jdbc:h2:file:" + new File(plugin.getDataFolder(), plugin.getName() + ".db").getAbsolutePath()))
                 .username(config.getString("database.username", "sa"))
                 .password(config.getString("database.password", "sa"))
@@ -45,6 +44,7 @@ public class Config {
     Class<?>[] entities;
     Class<?> migrationClass;
     String migrationPath;
+    String migrationTable;
 
     public Builder toBuilder() {
         DataSourceConfig dataSourceConfig = databaseConfig.getDataSourceConfig();
@@ -60,7 +60,8 @@ public class Config {
                 createAll,
                 entities,
                 migrationClass,
-                migrationPath);
+                migrationPath,
+                migrationTable);
     }
 
     @Setter
@@ -82,6 +83,7 @@ public class Config {
         private Class<?>[] entities = new Class[0];
         private Class<?> migrationClass = getClass();
         private String migrationPath = "dbmigration";
+        private String migrationTable = "db_migration";
 
         Builder() {
         }
@@ -142,7 +144,7 @@ public class Config {
                 databaseConfig.setDdlRun(true);
             }
 
-            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, runMigrations, createAll, entities, migrationClass, migrationPath);
+            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, runMigrations, createAll, entities, migrationClass, migrationPath, migrationTable);
         }
 
         private DatabaseConfig defaultDatabaseConfig() {
