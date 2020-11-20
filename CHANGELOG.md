@@ -1,3 +1,16 @@
+# [2.8.0](https://github.com/Silthus/ebean-wrapper/compare/v2.7.0...v2.8.0) (2020-11-20)
+
+
+### Bug Fixes
+
+* **ebean:** add entity classes instead of setting them ([4a619a0](https://github.com/Silthus/ebean-wrapper/commit/4a619a0777371208750113bcb5fe7de41aacb062))
+* **ebean:** only set entities if classes are provided ([bb067b9](https://github.com/Silthus/ebean-wrapper/commit/bb067b9731d7213f49c8119ba37cdd1d479cbd26))
+
+
+### Features
+
+* **migrations:** add option to specify migration table ([f91f489](https://github.com/Silthus/ebean-wrapper/commit/f91f4895106446dea110744367524a8c3e004e5f))
+
 # [2.7.0](https://github.com/Silthus/ebean-wrapper/compare/v2.6.1...v2.7.0) (2020-11-17)
 
 
