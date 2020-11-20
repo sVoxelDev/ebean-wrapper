@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/Silthus/ebean-wrapper/compare/v2.8.0...v2.8.1) (2020-11-20)
+
+
+### Bug Fixes
+
+* **deps:** rollback to ebean 12.5.2 ([d5e8edd](https://github.com/Silthus/ebean-wrapper/commit/d5e8edd18bae3e5f23381186d2babad61583b643))
+
 # [2.8.0](https://github.com/Silthus/ebean-wrapper/compare/v2.7.0...v2.8.0) (2020-11-20)
 
 
