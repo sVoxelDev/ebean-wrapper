@@ -122,9 +122,7 @@ public class Config {
             }
 
             databaseConfig.setDataSourceConfig(dataSource);
-            if (entities.length > 0) {
-                databaseConfig.setClasses(Arrays.asList(entities.clone()));
-            }
+            Arrays.stream(entities).forEach(databaseConfig::addClass);
 
             if (runMigrations) {
                 try {
