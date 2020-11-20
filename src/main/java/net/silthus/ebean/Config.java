@@ -14,9 +14,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @Value
 public class Config {
+
+    private static Set<Class<?>> classes = new HashSet<>();
 
     public static Builder builder() {
         return new Builder();
@@ -89,6 +93,7 @@ public class Config {
         }
 
         public Builder entities(Class<?>... entities) {
+            classes.addAll(Arrays.asList(entities.clone()));
             this.entities = entities;
             return this;
         }
@@ -124,7 +129,7 @@ public class Config {
             }
 
             databaseConfig.setDataSourceConfig(dataSource);
-            Arrays.stream(entities).forEach(databaseConfig::addClass);
+            classes.forEach(databaseConfig::addClass);
 
             if (runMigrations) {
                 try {
