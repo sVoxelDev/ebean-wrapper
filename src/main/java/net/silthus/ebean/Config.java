@@ -134,6 +134,7 @@ public class Config {
 
                     databaseConfig.setRunMigration(true);
                     databaseConfig.getMigrationConfig().setMigrationPath("filesystem:" + new File(migrationDir, driver.getIdentifier()).getAbsolutePath());
+                    databaseConfig.getMigrationConfig().setMetaTable(migrationTable);
                 } catch (IOException e) {
                     e.printStackTrace();
                     databaseConfig.setRunMigration(false);
@@ -142,6 +143,7 @@ public class Config {
                 databaseConfig.setRunMigration(false);
                 databaseConfig.setDdlGenerate(true);
                 databaseConfig.setDdlRun(true);
+                databaseConfig.getMigrationConfig().setMetaTable(migrationTable);
             }
 
             return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, runMigrations, createAll, entities, migrationClass, migrationPath, migrationTable);
