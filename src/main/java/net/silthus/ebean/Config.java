@@ -122,7 +122,9 @@ public class Config {
             }
 
             databaseConfig.setDataSourceConfig(dataSource);
-            databaseConfig.setClasses(Arrays.asList(entities.clone()));
+            if (entities.length > 0) {
+                databaseConfig.setClasses(Arrays.asList(entities.clone()));
+            }
 
             if (runMigrations) {
                 try {
