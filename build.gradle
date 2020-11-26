@@ -59,7 +59,7 @@ dependencies {
 
     api "io.ebean:ebean-annotation:6.13"
     api "io.ebean:ebean-querybean:12.6.1"
-    api "io.ebean:ebean:12.5.2"
+    api "io.ebean:ebean:12.6.1"
 
     implementation "io.ebean:ebean-migration:12.2.0"
 
