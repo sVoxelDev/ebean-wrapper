@@ -32,7 +32,7 @@ public class Config {
                 .driverPath(new File("lib"))
                 .autoDownloadDriver(true)
                 .migrations(plugin.getClass())
-                .migrationTable("db_migrations_" + plugin.getName())
+                .migrationTable("db_migrations_" + plugin.getName().replace("-", "_").replace(" ", "_"))
                 .url(config.getString("database.url", "jdbc:h2:file:" + new File(plugin.getDataFolder(), plugin.getName() + ".db").getAbsolutePath()))
                 .username(config.getString("database.username", "sa"))
                 .password(config.getString("database.password", "sa"))
