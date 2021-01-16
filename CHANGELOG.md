@@ -1,3 +1,11 @@
+## [2.9.1](https://github.com/Silthus/ebean-wrapper/compare/v2.9.0...v2.9.1) (2021-01-16)
+
+
+### Bug Fixes
+
+* **build:** downgrade back to jdk8 ([ddbe90c](https://github.com/Silthus/ebean-wrapper/commit/ddbe90c9d8c36e4e22b830438df4af8e3adf3338))
+* **migrations:** split migration and database initialization ([524b294](https://github.com/Silthus/ebean-wrapper/commit/524b2949aab989d07dbca265b8507d400cae3781))
+
 # [2.9.0](https://github.com/Silthus/ebean-wrapper/compare/v2.8.3...v2.9.0) (2021-01-16)
 
 
