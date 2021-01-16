@@ -18,8 +18,12 @@ plugins {
 apply from: "$rootDir/gradle/jacoco.gradle"
 apply from: "$rootDir/gradle/publish.gradle"
 
-sourceCompatibility = 8
-targetCompatibility = 8
+if (project.hasProperty("local_script")) {
+    apply from: file(local_script + "/build.local.gradle")
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
 
 ext {
     mcVersion = project.property("mcVersion")
@@ -59,7 +63,6 @@ dependencies {
 
     api "io.ebean:ebean:12.6.5"
     api 'io.ebean:ebean-querybean:12.6.5'
-
     implementation "io.ebean:ebean-migration:12.4.0"
 
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'

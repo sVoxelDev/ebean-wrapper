@@ -143,9 +143,13 @@ public class Config {
                     File migrationDir = new File(tempDir, migrationPath);
                     JarUtil.copyFolderFromJar(migrationClass, migrationPath, tempDir, JarUtil.CopyOption.REPLACE_IF_EXIST);
 
-                    databaseConfig.setRunMigration(true);
+                    databaseConfig.setRunMigration(false);
                     migrationConfig.setMigrationPath("filesystem:" + new File(migrationDir, driver.getIdentifier()).getAbsolutePath());
                     migrationConfig.setMetaTable(migrationTable);
+                    migrationConfig.setPlatformName(driver.getIdentifier());
+                    migrationConfig.setDbUsername(username);
+                    migrationConfig.setDbPassword(password);
+                    migrationConfig.setDbUrl(url);
                 } catch (IOException e) {
                     e.printStackTrace();
                     databaseConfig.setRunMigration(false);
