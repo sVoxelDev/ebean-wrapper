@@ -1,3 +1,11 @@
+## [2.8.3](https://github.com/Silthus/ebean-wrapper/compare/v2.8.2...v2.8.3) (2021-01-16)
+
+
+### Bug Fixes
+
+* **build:** revert to ebean 12.5.2 ([5c38e7e](https://github.com/Silthus/ebean-wrapper/commit/5c38e7e8592cf261f0e33d810e58c8f4401c52b6))
+* **bukkit:** replace - and space in plugin name for migration table ([a6e27da](https://github.com/Silthus/ebean-wrapper/commit/a6e27daf89f782b85c2738cbe9aa71ec237b1dcb))
+
 ## [2.8.2](https://github.com/Silthus/ebean-wrapper/compare/v2.8.1...v2.8.2) (2020-11-20)
 
 
