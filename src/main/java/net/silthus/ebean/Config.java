@@ -5,6 +5,7 @@ import io.ebean.config.DatabaseConfig;
 import io.ebean.config.ServerConfig;
 import io.ebean.datasource.DataSourceConfig;
 import io.ebean.migration.MigrationConfig;
+import io.ebean.migration.MigrationRunner;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.Value;
@@ -44,6 +45,7 @@ public class Config {
     DriverMapping driver;
     File driverPath;
     DatabaseConfig databaseConfig;
+    MigrationConfig migrationConfig;
     boolean autoDownloadDriver;
     boolean runMigrations;
     boolean createAll;
@@ -57,6 +59,7 @@ public class Config {
         return new Builder(driver,
                 driverPath,
                 databaseConfig,
+                migrationConfig,
                 dataSourceConfig.getUsername(),
                 dataSourceConfig.getPassword(),
                 dataSourceConfig.getUrl(),
@@ -79,6 +82,7 @@ public class Config {
         private DriverMapping driver = DriverMapping.DRIVERS.get("h2");
         private File driverPath = new File("lib");
         private DatabaseConfig databaseConfig = defaultDatabaseConfig();
+        private MigrationConfig migrationConfig = new MigrationConfig();
         private String username = "sa";
         private String password = "sa";
         private String url = "jdbc:h2:~/ebean";
@@ -140,8 +144,8 @@ public class Config {
                     JarUtil.copyFolderFromJar(migrationClass, migrationPath, tempDir, JarUtil.CopyOption.REPLACE_IF_EXIST);
 
                     databaseConfig.setRunMigration(true);
-                    databaseConfig.getMigrationConfig().setMigrationPath("filesystem:" + new File(migrationDir, driver.getIdentifier()).getAbsolutePath());
-                    databaseConfig.getMigrationConfig().setMetaTable(migrationTable);
+                    migrationConfig.setMigrationPath("filesystem:" + new File(migrationDir, driver.getIdentifier()).getAbsolutePath());
+                    migrationConfig.setMetaTable(migrationTable);
                 } catch (IOException e) {
                     e.printStackTrace();
                     databaseConfig.setRunMigration(false);
@@ -150,10 +154,10 @@ public class Config {
                 databaseConfig.setRunMigration(false);
                 databaseConfig.setDdlGenerate(true);
                 databaseConfig.setDdlRun(true);
-                databaseConfig.getMigrationConfig().setMetaTable(migrationTable);
+                migrationConfig.setMetaTable(migrationTable);
             }
 
-            return new Config(driver, driverPath, databaseConfig, autoDownloadDriver, runMigrations, createAll, entities, migrationClass, migrationPath, migrationTable);
+            return new Config(driver, driverPath, databaseConfig, migrationConfig, autoDownloadDriver, runMigrations, createAll, entities, migrationClass, migrationPath, migrationTable);
         }
 
         private DatabaseConfig defaultDatabaseConfig() {
