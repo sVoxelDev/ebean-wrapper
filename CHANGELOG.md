@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/Silthus/ebean-wrapper/compare/v2.8.3...v2.9.0) (2021-01-16)
+
+
+### Features
+
+* upgrade to new migration runner ([db8a2ac](https://github.com/Silthus/ebean-wrapper/commit/db8a2ac57054b242f96f5ba3ad7247ff7afde9fa))
+
 ## [2.8.3](https://github.com/Silthus/ebean-wrapper/compare/v2.8.2...v2.8.3) (2021-01-16)
 
 
