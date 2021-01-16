@@ -2,23 +2,14 @@ package net.silthus.ebean;
 
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
-import io.ebean.annotation.Platform;
-import io.ebean.config.ClassLoadConfig;
-import io.ebean.config.DbMigrationConfig;
-import io.ebean.dbmigration.DbMigration;
-import io.ebean.migration.MigrationConfig;
-import io.ebean.migration.MigrationRunner;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.sql.Driver;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 /**
  * The ebean wrapper takes a simplified database config and creates a new ebean database connection with it.

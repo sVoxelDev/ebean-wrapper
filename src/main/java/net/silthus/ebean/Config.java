@@ -2,7 +2,9 @@ package net.silthus.ebean;
 
 import com.google.common.io.Files;
 import io.ebean.config.DatabaseConfig;
+import io.ebean.config.ServerConfig;
 import io.ebean.datasource.DataSourceConfig;
+import io.ebean.migration.MigrationConfig;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.Value;
