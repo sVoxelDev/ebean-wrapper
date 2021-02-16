@@ -61,7 +61,7 @@ dependencies {
 
     compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
 
-    api "io.ebean:ebean:12.6.6"
+    api "io.ebean:ebean:12.6.7"
     api 'io.ebean:ebean-querybean:12.6.7'
     implementation "io.ebean:ebean-migration:12.4.0"
 
