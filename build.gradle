@@ -70,7 +70,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation "org.mockito:mockito-core:3.+"
     testImplementation 'org.assertj:assertj-core:3.+'
-    testImplementation 'io.ebean:ebean-test:12.8.0'
+    testImplementation 'io.ebean:ebean-test:12.8.1'
 }
 
 shadowJar {
