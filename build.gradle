@@ -55,7 +55,7 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor "io.ebean:querybean-generator:12.9.0"
+    annotationProcessor "io.ebean:querybean-generator:12.9.2"
 
     compileOnly spigot(mcVersion)
 
