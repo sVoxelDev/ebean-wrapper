@@ -62,7 +62,7 @@ dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '2.10.0'
 
     api "io.ebean:ebean:12.9.2"
-    api 'io.ebean:ebean-querybean:12.9.2'
+    api 'io.ebean:ebean-querybean:12.11.0'
     implementation "io.ebean:ebean-migration:12.5.0"
 
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
