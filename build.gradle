@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
     }
 }
@@ -22,8 +21,8 @@ if (project.hasProperty("local_script")) {
     apply from: file(local_script + "/build.local.gradle")
 }
 
-sourceCompatibility = 8
-targetCompatibility = 8
+sourceCompatibility = 16
+targetCompatibility = 16
 
 ext {
     mcVersion = project.property("mcVersion")
@@ -49,28 +48,27 @@ compileJava {
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
 
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    annotationProcessor "io.ebean:querybean-generator:12.9.2"
+    annotationProcessor 'io.ebean:querybean-generator:12.12.0'
 
-    compileOnly spigot(mcVersion)
+    implementation spigot(mcVersion)
 
-    compile group: 'commons-io', name: 'commons-io', version: '2.10.0'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.10.0'
 
-    api "io.ebean:ebean:12.9.2"
-    api 'io.ebean:ebean-querybean:12.11.1'
-    implementation "io.ebean:ebean-migration:12.5.0"
+    api 'io.ebean:ebean:12.12.0'
+    api 'io.ebean:ebean-querybean:12.12.0'
+    implementation 'io.ebean:ebean-migration:12.12.1'
 
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
-    testImplementation "org.mockito:mockito-core:3.+"
-    testImplementation 'org.assertj:assertj-core:3.+'
-    testImplementation 'io.ebean:ebean-test:12.9.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.assertj:assertj-core:3.21.0'
+    testImplementation 'io.ebean:ebean-test:12.12.0'
 }
 
 shadowJar {
