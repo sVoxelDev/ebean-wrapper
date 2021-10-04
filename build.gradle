@@ -57,7 +57,7 @@ dependencies {
 
     implementation spigot(mcVersion)
 
-    implementation group: 'commons-io', name: 'commons-io', version: '2.10.0'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 
     api 'io.ebean:ebean:12.12.0'
     api 'io.ebean:ebean-querybean:12.12.0'
