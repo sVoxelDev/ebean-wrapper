@@ -9,7 +9,7 @@ plugins {
     id 'kr.entree.spigradle' version '2.2.4'
     id 'java-library'
     id 'jacoco'
-    id 'io.ebean' version '12.9.1'
+    id 'io.ebean' version '12.12.3'
     id 'idea'
     id "io.freefair.lombok" version "5.3.3.3"
 }
