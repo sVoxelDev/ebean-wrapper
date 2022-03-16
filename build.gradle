@@ -60,7 +60,7 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.10.0'
 
     api 'io.ebean:ebean:12.12.0'
-    api 'io.ebean:ebean-querybean:12.12.1'
+    api 'io.ebean:ebean-querybean:12.16.0'
     implementation 'io.ebean:ebean-migration:12.12.1'
 
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
