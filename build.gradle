@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor 'io.ebean:querybean-generator:12.12.1'
+    annotationProcessor 'io.ebean:querybean-generator:13.9.1'
 
     implementation spigot(mcVersion)
 
