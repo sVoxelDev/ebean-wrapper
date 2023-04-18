@@ -2,10 +2,7 @@ package net.silthus.ebean;
 
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
-import io.ebean.migration.AutoRunner;
-import io.ebean.migration.MigrationConfig;
 import io.ebean.migration.MigrationRunner;
-import io.ebean.migration.auto.AutoMigrationRunner;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -105,7 +102,9 @@ public class EbeanWrapper implements AutoCloseable {
             throw new RuntimeException("Unable to find " + driver.getIdentifier() + " driver class " + driver.getDriverClass() + " inside " + driverLocation.getAbsolutePath(), e);
         }
 
-        new MigrationRunner(config.getMigrationConfig()).run();
+        if(config.isRunMigrations()) {
+            new MigrationRunner(config.getMigrationConfig()).run();
+        }
 
         database = DatabaseFactory.create(config.getDatabaseConfig());
 
