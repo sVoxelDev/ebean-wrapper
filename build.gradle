@@ -61,7 +61,7 @@ dependencies {
 
     api 'io.ebean:ebean:12.12.0'
     api 'io.ebean:ebean-querybean:12.12.1'
-    implementation 'io.ebean:ebean-migration:12.12.1'
+    implementation 'io.ebean:ebean-migration:12.16.3'
 
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
